@@ -1,0 +1,39 @@
+repos:
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.1
+    hooks:
+      - id: codespell
+        additional_dependencies:
+          - tomli
+  - repo: local
+    hooks:
+      - id: deptry
+        name: deptry
+        always_run: true
+        entry: uv run --frozen --offline deptry src
+        language: system
+        pass_filenames: false
+  - repo: local
+    hooks:
+      - id: ruff-format
+        name: ruff-format
+        types_or:
+          - python
+          - pyi
+          - jupyter
+        always_run: true
+        entry: uv run --frozen --offline ruff format --force-exclude
+        language: system
+        require_serial: true
+  - repo: local
+    hooks:
+      - id: ruff
+        name: ruff
+        types_or:
+          - python
+          - pyi
+          - jupyter
+        always_run: true
+        entry: uv run --frozen --offline ruff check --fix --force-exclude
+        language: system
+        require_serial: true
