@@ -13,6 +13,17 @@ class TestExtendedEuclidean:
         # Assert
         assert result == (1, 0, 1)
 
+    def test_gcd_one_two(self):
+        # arrange
+        a = 1
+        b = 2
+
+        # Act
+        result, _, _ = extended_euclidean(a, b)
+
+        # assert
+        assert result == 1
+
     def test_even(self):
         # arrange
         a = 2

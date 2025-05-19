@@ -1,3 +1,7 @@
+from powerful.power import power_mod
+from powerful.prime import Prime
+
+
 def extended_euclidean(a, b):
     if b == 0:
         return (a, 1, 0)
@@ -9,6 +13,8 @@ def extended_euclidean(a, b):
 
 
 def mod_inverse(a, p):
+    if type(p) is Prime:
+        return power_mod(a, p - 1, p)
     gcd, x, _ = extended_euclidean(a, p)
     if gcd != 1:
         raise ValueError("NOT COPRIME: GCD ", gcd)
