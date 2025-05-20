@@ -10,7 +10,7 @@ class TestPrime:
         result = is_prime(a)
 
         # assert
-        assert result == True
+        assert result
 
     def test_big_number(self):
         # arrange
@@ -20,7 +20,7 @@ class TestPrime:
         result = is_prime(p)
 
         # assert
-        assert result == True
+        assert result
 
     def test_arkadii_number(self):
         # arrange
@@ -30,7 +30,7 @@ class TestPrime:
         result = is_prime(p)
 
         # assert
-        assert result == True
+        assert result
 
     def test_miller_rabin_falsehood(self):
         # arrange
@@ -40,7 +40,7 @@ class TestPrime:
         result = is_prime(p)
 
         # assert
-        assert result == False
+        assert not result
 
     def test_prime_creation(self):
         # arrange
@@ -63,4 +63,4 @@ class TestPrime:
             prime = False
 
         # assert
-        assert prime == False
+        assert not prime
