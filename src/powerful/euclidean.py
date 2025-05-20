@@ -14,7 +14,7 @@ def extended_euclidean(a, b):
 
 def mod_inverse(a, p):
     if type(p) is Prime:
-        return power_mod(a, p - 1, p)
+        return power_mod(a, p - 2, p)
     gcd, x, _ = extended_euclidean(a, p)
     if gcd != 1:
         raise ValueError("NOT COPRIME: GCD ", gcd)
