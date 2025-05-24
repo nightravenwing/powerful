@@ -1,3 +1,5 @@
+import pytest
+
 from powerful.prime import Prime, is_prime
 
 
@@ -57,10 +59,5 @@ class TestPrime:
         p = 1332141235453512342314655513
 
         # act
-        try:
-            prime = Prime(p)
-        except:
-            prime = False
-
-        # assert
-        assert not prime
+        with pytest.raises(ValueError, match="not prime"):
+            Prime(p)
