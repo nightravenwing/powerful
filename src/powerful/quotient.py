@@ -1,7 +1,7 @@
 from powerful.euclidean import extended_euclidean, mod_inverse
 
 
-def quotient_mod_unique(n, a, p):
+def quotient_mod_unique(n: int, a: int, p: int) -> int:
     try:
         inv_a = mod_inverse(a, p)  # modular inverse of a mod p
         return (n * inv_a) % p
@@ -9,7 +9,7 @@ def quotient_mod_unique(n, a, p):
         raise ValueError("No Unique Solution")
 
 
-def quotient_mod(n, a, p):
+def quotient_mod(n: int, a: int, p: int) -> list[int]:
     """Gives all solutions to the equation a * x ≡ n (mod p)."""
     d, _, _ = extended_euclidean(a, p)
     if n % d != 0:
