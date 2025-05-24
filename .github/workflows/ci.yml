@@ -65,7 +65,7 @@ jobs:
         resolution: ["highest"]
         codspeed: [false]
         codecov: [false]
-        pre-commit: [false]
+        pre-commit: [true]
         pytest: [true]
         include:
           - os: "ubuntu-latest"
