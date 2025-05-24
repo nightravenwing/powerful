@@ -1,3 +1,4 @@
+from numbers import Integral, Number
 from random import randint
 
 from powerful.power import power_mod
@@ -9,102 +10,20 @@ MILLER_RABIN_DEFAULT_TRIALS = 60
 ATOMIC_ACCURACY = 134
 
 
-class Prime:
+class Prime(int):
     # Constructor
-    def __init__(self, p) -> None:
+    def __new__(cls, p):
         if not is_prime(p):
             raise ValueError(f"{p} is not prime...")
-        else:
-            self.p = p
 
-    # Prime Specific Functions
-
-    # Arithmetic
-    def __add__(self, other):
-        return self.p + other
-
-    def __sub__(self, other):
-        return self.p - other
-
-    def __mul__(self, other):
-        return self.p * other
-
-    def __truediv__(self, other):
-        return self.p / other
-
-    def __floordiv__(self, other):
-        return self.p // other
-
-    def __mod__(self, other):
-        return self.p % other
-
-    def __pow__(self, other):
-        return self.p**other
-
-    # Reflected arithmetic
-    def __radd__(self, other):
-        return other + self.p
-
-    def __rsub__(self, other):
-        return other - self.p
-
-    def __rmul__(self, other):
-        return other * self.p
-
-    def __rtruediv__(self, other):
-        return other / self.p
-
-    def __rfloordiv__(self, other):
-        return other // self.p
-
-    def __rmod__(self, other):
-        return other % self.p
-
-    def __rpow__(self, other):
-        return other**self.p
-
-    # Unary operations
-    def __neg__(self):
-        return -self.p
-
-    def __pos__(self):
-        return +self.p
-
-    def __abs__(self):
-        return abs(self.p)
-
-    # Comparison
-    def __eq__(self, other):
-        return self.p == other
-
-    def __ne__(self, other):
-        return self.p != other
-
-    def __lt__(self, other):
-        return self.p < other
-
-    def __le__(self, other):
-        return self.p <= other
-
-    def __gt__(self, other):
-        return self.p > other
-
-    def __ge__(self, other):
-        return self.p >= other
-
-    # Type conversion
-    def __int__(self):
-        return int(self.p)
-
-    def __float__(self):
-        return float(self.p)
+        return super().__new__(cls, p)
 
     # Representation
     def __repr__(self):
-        return f"Prime({self.p})"
+        return f"Prime({self})"
 
     def __str__(self):
-        return str(self.p)
+        return str(self)
 
 
 def is_prime(p):
