@@ -1,52 +1,63 @@
+[build-system]
+build-backend = "hatchling.build"
+
+requires = [ "hatchling" ]
+
 [project]
 name = "powerful"
 version = "0.1.0"
 description = "Number Theoretic optimized arithmetic and operations"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+classifiers = [ "Programming Language :: Python :: 3 :: Only", "Programming Language :: Python :: 3.13" ]
+dependencies = [  ]
 
 [dependency-groups]
 dev = [
-    "deptry>=0.23.0",
-    "pre-commit>=4.2.0",
-    "pytest-md>=0.2.0",
-    "ruff>=0.11.9",
-    "tqdm>=4.67.1",
+  "deptry>=0.23.0",
+  "pre-commit>=4.2.0",
+  "pytest-md>=0.2.0",
+  "ruff>=0.11.9",
+  "tqdm>=4.67.1",
 ]
 test = [
-    "coverage[toml]>=7.8.2",
-    "pytest>=8.3.5",
-    "pytest-cov>=6.1.1",
+  "coverage[toml]>=7.8.2",
+  "pytest>=8.3.5",
+  "pytest-cov>=6.1.1",
 ]
 
 [tool.ruff]
 line-length = 88
 
-[tool.ruff.lint]
-select = ["A", "C4", "E4", "E7", "E9", "F", "FLY", "FURB", "I", "PLE", "PLR", "RUF", "SIM", "UP", "PT"]
-ignore = ["PLR2004", "SIM108"]
+lint.select = [ "A", "C4", "E4", "E7", "E9", "F", "FLY", "FURB", "I", "PLE", "PLR", "PT", "RUF", "SIM", "UP" ]
+lint.ignore = [ "PLR2004", "SIM108" ]
 
-[tool.uv]
-default-groups = ["test", "dev"]
+[tool.codespell]
+ignore-regex = [ "[A-Za-z0-9+/]{100,}" ]
+
+[tool.pyproject-fmt]
+keep_full_version = true
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
-addopts = ["--import-mode=importlib", "-ra", "--strict-markers", "--strict-config"]
-filterwarnings = ["error"]
+testpaths = [ "tests" ]
+addopts = [ "--import-mode=importlib", "-ra", "--strict-markers", "--strict-config" ]
+filterwarnings = [ "error" ]
 xfail_strict = true
 log_cli_level = "INFO"
 minversion = "7"
 
-[tool.codespell]
-ignore-regex = ["[A-Za-z0-9+/]{100,}"]
-
 [tool.coverage]
-report.exclude_also = ["if TYPE_CHECKING:", "raise AssertionError", "raise NotImplementedError", "assert_never(.*)", "class .*\\bProtocol\\):", "@(abc\\.)?abstractmethod"]
-report.omit = ["*/pytest-of-*/*"]
+report.exclude_also = [
+  "if TYPE_CHECKING:",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "assert_never(.*)",
+  "class .*\\bProtocol\\):",
+  "@(abc\\.)?abstractmethod",
+]
+report.omit = [ "*/pytest-of-*/*" ]
 [tool.coverage.run]
-source = ["src"]
+source = [ "src" ]
+
+[tool.uv]
+default-groups = [ "test", "dev" ]
