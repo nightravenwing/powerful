@@ -37,3 +37,7 @@ repos:
         entry: uv run --frozen --offline ruff check --fix --force-exclude
         language: system
         require_serial: true
+  - repo: https://github.com/tox-dev/pyproject-fmt
+    rev: v2.5.0
+    hooks:
+      - id: pyproject-fmt
