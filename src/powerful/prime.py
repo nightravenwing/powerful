@@ -1,4 +1,3 @@
-from numbers import Integral, Number
 from random import randint
 
 from powerful.power import power_mod

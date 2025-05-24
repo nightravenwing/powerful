@@ -10,6 +10,7 @@ def quotient_mod_unique(n: int, a: int, p: int) -> int:
 
 
 def quotient_mod(n: int, a: int, p: int) -> list[int]:
+    """Gives all solutions to the equation a * x ≡ n (mod p)."""
     d, _, _ = extended_euclidean(a, p)
     if n % d != 0:
         return []  # No solution exists
