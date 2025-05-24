@@ -1,13 +1,16 @@
-from random import randint
-from typing import Self
 
-from powerful.power import power_mod
+from typing import Literal, assert_never
 
-PRIME_THRESHOLD = 10000
-MILLER_RABIN_DEFAULT_TRIALS = 60
 
-# for losers who don't like probabilistic tests go eat an atom:
-ATOMIC_ACCURACY = 134
+from powerful.primality_tests import (
+    miller_rabin_primality_test,
+    trial_division_primality_test,
+)
+
+LARGE_PRIME_THRESHOLD = 10000
+DEFAULT_LARGE_NUMBER_PRIMALITY_TEST: Literal["miller_rabin", "trial_division"] = (
+    "miller_rabin"
+)
 
 
 class Prime(int):
@@ -24,40 +27,14 @@ class Prime(int):
 
     def __str__(self) -> str:
         return str(self)
+      
+def is_prime(p):
+    if p < LARGE_PRIME_THRESHOLD:
+        return trial_division_primality_test(p)
 
-
-def is_prime(p: int) -> bool:
-    if p < PRIME_THRESHOLD:
-        return __is_genuine_prime(p)
+    if DEFAULT_LARGE_NUMBER_PRIMALITY_TEST == "trial_division":
+        return trial_division_primality_test(p)
+    elif DEFAULT_LARGE_NUMBER_PRIMALITY_TEST == "miller_rabin":
+        return miller_rabin_primality_test(p)
     else:
-        return miller_rabin_primality_test(p, MILLER_RABIN_DEFAULT_TRIALS)
-
-
-def __is_genuine_prime(p: int) -> bool:
-    for i in range(2, int(p**0.5)):  # noqa: SIM110
-        if p % i == 0:
-            return False
-
-    return True
-
-
-def miller_rabin_primality_test(p: int, trial_quantity: int) -> bool:
-    d, r = p - 1, 0
-    while d % 2 == 0:
-        d = d // 2
-        r = r + 1
-    for _ in range(trial_quantity):
-        a = randint(2, p - 1)
-        x = power_mod(a, d, p)
-
-        if x == 1 or x == p - 1:
-            continue
-
-        for _ in range(r - 1):
-            x = power_mod(x, 2, p)
-
-            if x == p - 1:
-                break
-            else:
-                return False
-    return True
+        assert_never(DEFAULT_LARGE_NUMBER_PRIMALITY_TEST)
