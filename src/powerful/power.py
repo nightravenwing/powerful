@@ -1,4 +1,4 @@
-def power_mod(x, n, p):
+def power_mod(x: int, n: int, p: int) -> int:
     binary = bin(n)
     has_reached_one = False
     m = x % p
