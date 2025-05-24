@@ -1,4 +1,5 @@
 from random import randint
+from typing import Self
 
 from powerful.power import power_mod
 
@@ -11,28 +12,28 @@ ATOMIC_ACCURACY = 134
 
 class Prime(int):
     # Constructor
-    def __new__(cls, p):
+    def __new__(cls, p: int) -> Self:
         if not is_prime(p):
             raise ValueError(f"{p} is not prime...")
 
         return super().__new__(cls, p)
 
     # Representation
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Prime({self})"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return str(self)
 
 
-def is_prime(p):
+def is_prime(p: int) -> bool:
     if p < PRIME_THRESHOLD:
         return __is_genuine_prime(p)
     else:
         return miller_rabin_primality_test(p, MILLER_RABIN_DEFAULT_TRIALS)
 
 
-def __is_genuine_prime(p):
+def __is_genuine_prime(p: int) -> bool:
     for i in range(2, int(p**0.5)):  # noqa: SIM110
         if p % i == 0:
             return False
@@ -40,7 +41,7 @@ def __is_genuine_prime(p):
     return True
 
 
-def miller_rabin_primality_test(p, trial_quantity):
+def miller_rabin_primality_test(p: int, trial_quantity: int) -> bool:
     d, r = p - 1, 0
     while d % 2 == 0:
         d = d // 2
