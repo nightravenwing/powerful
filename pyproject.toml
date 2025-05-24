@@ -18,7 +18,9 @@ dev = [
     "tqdm>=4.67.1",
 ]
 test = [
+    "coverage[toml]>=7.8.2",
     "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
 ]
 
 [tool.ruff]
@@ -41,3 +43,9 @@ minversion = "7"
 
 [tool.codespell]
 ignore-regex = ["[A-Za-z0-9+/]{100,}"]
+
+[tool.coverage]
+report.exclude_also = ["if TYPE_CHECKING:", "raise AssertionError", "raise NotImplementedError", "assert_never(.*)", "class .*\\bProtocol\\):", "@(abc\\.)?abstractmethod"]
+report.omit = ["*/pytest-of-*/*"]
+[tool.coverage.run]
+source = ["src"]
