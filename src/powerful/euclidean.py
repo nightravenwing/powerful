@@ -2,7 +2,7 @@ from powerful.power import power_mod
 from powerful.prime import Prime
 
 
-def extended_euclidean(a, b):
+def extended_euclidean(a: int, b: int) -> tuple[int, int, int]:
     if b == 0:
         return (a, 1, 0)
     else:
@@ -12,7 +12,7 @@ def extended_euclidean(a, b):
         return (gcd, x, y)
 
 
-def mod_inverse(a, p):
+def mod_inverse(a: int, p: int) -> int:
     if type(p) is Prime:
         return power_mod(a, p - 2, p)
     gcd, x, _ = extended_euclidean(a, p)
