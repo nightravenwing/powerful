@@ -1,6 +1,4 @@
-
 from typing import Literal, assert_never
-
 
 from powerful.primality_tests import (
     miller_rabin_primality_test,
@@ -15,7 +13,7 @@ DEFAULT_LARGE_NUMBER_PRIMALITY_TEST: Literal["miller_rabin", "trial_division"] =
 
 class Prime(int):
     # Constructor
-    def __new__(cls, p: int) -> Self:
+    def __new__(cls, p: int):
         if not is_prime(p):
             raise ValueError(f"{p} is not prime...")
 
@@ -27,7 +25,8 @@ class Prime(int):
 
     def __str__(self) -> str:
         return str(self)
-      
+
+
 def is_prime(p):
     if p < LARGE_PRIME_THRESHOLD:
         return trial_division_primality_test(p)
