@@ -1,4 +1,5 @@
 from powerful.power import power_mod
+from powerful.prime import Prime
 
 
 class TestPowerMod:
@@ -49,3 +50,15 @@ class TestPowerMod:
 
         # assert
         assert result == 711191711059966602217
+
+    def test_prime(self):
+        # arrange
+        a = 4
+        b = 2
+        p = Prime(13)
+
+        # act
+        result = power_mod(a, b, p)
+
+        # arrange
+        assert result == 3
